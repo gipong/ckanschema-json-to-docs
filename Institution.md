@@ -1,0 +1,16 @@
+<table><tr><td>屬性名稱</td><td>定義</td></tr><tr>
+                <td>type</td>
+                <td></td>
+            </tr><tr>
+                <td>name</td>
+                <td></td>
+            </tr><tr>
+                <td>contact</td>
+                <td></td>
+            </tr><tr>
+                <td>phone</td>
+                <td></td>
+            </tr><tr>
+                <td>mail</td>
+                <td></td>
+            </tr></table>

@@ -1,0 +1,16 @@
+<table><tr><td>屬性名稱</td><td>定義</td></tr><tr>
+                <td>Year</td>
+                <td></td>
+            </tr><tr>
+                <td>Decade</td>
+                <td></td>
+            </tr><tr>
+                <td>Century</td>
+                <td></td>
+            </tr><tr>
+                <td>Date</td>
+                <td></td>
+            </tr><tr>
+                <td>Month</td>
+                <td></td>
+            </tr></table>

@@ -1,0 +1,258 @@
+```uml
+@startuml
+  ' license_id codelist未定義
+
+
+  Class Metadata {
+    +title[1..*]:CharacterString
+    +name:CharacterString
+    +identifier:CharacterString
+    +data_type:Data_type
+    +proj:Subproject_code
+    +notes:CharacterString
+    +owner_org:CharacterString
+    +language:Language_type
+    +encoding:Encoding_type
+    +temp_res:Temp_res_type
+    +start_time[1..3]:W3C_NOTE-datetime
+    /'{"def":"資料集檔案內容所代表時間之起始時間點(段)","zhTW":"+起始時間:W3C_NOTE-datetime", "值":"fffff"}'/
+    +end_time:W3C_NOTE-datetime
+    +time_period:Time_period_type
+    +author_name:CharacterString
+    +author_mail:CharacterString
+    +author_phone:CharacterString
+    +maintainer_name:CharacterString
+    +maintainer_mail:CharacterString
+    +maintainer_phone:CharacterString
+    +theme_keyword:CharacterString
+    +loc_keyword:CharacterString
+    +spatial:GeoJSON
+    +x_min:Angle
+    +x_max:Angle
+    +y_min:Angle
+    +y_max:Angle
+    +subject:Theme_type
+    +format:CharacterString
+    +license_id:CharacterString
+    +ref:CharacterString
+    +tag_string:CharacterString
+    +created_time:CharacterString
+  }
+  Class Ref_book {
+    +book_isbn:CharacterString
+    +book_issn:CharacterString
+    +book_journal:CharacterString
+    +book_volume:CharacterString
+    +book_proceeding:CharacterString
+    +book_location:CharacterString
+    +book_publisher:CharacterString
+    +book_year:Year
+    +book_query:CharacterString
+    +book_url:CharacterString
+    +book_hist_materials:Hist_material_type
+    +book_area_village:CharacterString
+    +book_area_religion:CharacterString
+    +book_area_family:CharacterString
+    +book_area_reservoir:CharacterString
+    +book_area_industry:CharacterString
+    +book_notes:CharacterString
+  }
+
+  Class SpatialMetadata {
+    +resource_crs:CharacterString
+    +spatial_res:Real
+    +scale:Integer
+    +preprocessing/*Lineage:CharacterString
+  }
+
+  Class Scan_pics {
+    +scan_source:CharacterString
+    +scan_size:CharacterString
+    +scan_res:CharacterString
+  }
+
+  Metadata <|-- Ref_book
+  Metadata <|-- SpatialMetadata
+  Metadata <|-- Scan_pics
+  SpatialMetadata <|-- Scan_pics
+
+@enduml
+```,```uml
+@startuml
+
+  Class Subproject_code <<CodeList>> {
+    +proj_1
+    +proj_2
+    +proj_3
+    +proj_4
+    +no_selection
+  }
+
+  Class Data_type <<CodeList>> {
+    +statistics
+    +books
+    +pics_non_spatial
+    +pics_spatial
+    +grid/*raster
+    +vector
+    +tin
+    +steropair/*stereopair
+    +multimedia
+  }
+
+  Class Hist_material_type <<CodeList>> {
+    +local_chronicles_in_qing_dynasty
+    +japan_officials
+    +officials_in_postwar_period
+    +inscriptions
+    +newspapers
+    +maps
+    +taiwanese_governor_office_files
+    +dutch_formosa
+    +field_researches
+  }
+
+  Class Time <<DataType>> {
+    +type:Time_type
+    +time:W3C_NOTE-datetime
+    +temporal_res:Temp_res_type
+    +decade:CharacterString
+  }
+
+  Class Institution <<DataType>> {
+    +type:institution_type
+    +name:CharacterString
+    +contact:CharacterString
+    +phone:CharacterString
+    +mail:CharacterString
+  }
+
+  Class Theme_type <<Enumeration>> {
+    +oceans=014
+    +climatologyMeteorologyAtmosphere=004
+    +boundaries=003
+    +farming=001
+    +structure=017
+    +transportation=018
+    +elevation=006
+    +economy=005
+    +biota=002
+    +location=013
+    +utilitiesCommunication=019
+    +society=016
+    +environment=007
+    +intelligenceMilitary=011
+    +planningCadastre=015
+    +health=009
+    +geoscientificInformation=008
+    +inlandWaters=012
+    +imageryBaseMapsEarthCover=010
+  }
+
+  Class Institution_type <<CodeList>> {
+    +author
+    +producer
+    +provider
+    +publisher
+    +maintainer
+  }
+
+  Class Time_type <<CodeList>> {
+    +finished
+    +revised
+    +published
+    +posted
+    +time_peroid_of_content
+  }
+
+  Class Language_type <<CodeList>> {
+    +big5
+    +utf-8
+    +latin1
+    +gb2312
+    +gb18030
+    +shift_jis
+    +euc-jp
+  }
+
+  Class Encoding_type <<CodeList>> {
+    +zho
+    +hak
+    +nan
+    +yue
+    +lzh
+    +jpn
+    +eng
+    +spa
+    +nld
+    +fos
+    +por
+  }
+
+  Class Time_period_type <<CodeList>> {
+    +Dutch_formosa
+    +Kingdom_of_tungning
+    +Kangxi_period
+    +Early_qing_dynasty
+    +Yongzheng_period
+    +Qianlong_period
+    +Late_qing_dynasty
+    +Jiaqing_period
+    +Daoguang_period
+    +Daoxian_period
+    +Xianfeng_period
+    +Tongzhi_period
+    +Japanese_colonial_period
+    +Meiji_period
+    +Taisho_period
+    +Shōwa_period
+    +Pacific_war_period
+    +Postwar_period
+  }
+
+  Class Temp_res_type <<Enumeration>> {
+    +Year
+    +Decade
+    +Century
+    +Date
+    +Month
+  }
+
+@enduml
+```,```uml
+@startuml
+
+  Class CodeList {
+
+  }
+
+  Class Real {
+
+  }
+
+  Class W3C_NOTE-datetime {
+
+  }
+
+  Class Angle {
+
+  }
+
+  Class Year {
+
+  }
+
+  Class Integer {
+
+  }
+
+  Class GeoJSON {
+
+  }
+
+  Class CharacterString {
+
+  }
+
+@enduml
+```

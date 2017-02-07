@@ -1,0 +1,13 @@
+<table><tr><td>屬性名稱</td><td>定義</td></tr><tr>
+                <td>type</td>
+                <td></td>
+            </tr><tr>
+                <td>time</td>
+                <td></td>
+            </tr><tr>
+                <td>temporal_res</td>
+                <td></td>
+            </tr><tr>
+                <td>decade</td>
+                <td></td>
+            </tr></table>

@@ -1,0 +1,50 @@
+```uml
+@startuml
+
+  Class TJ_Metadata {
+      +名稱:自由文字
+      +識別碼:自由文字
+      +摘要:自由文字
+      +語言:自由文字
+      +編碼:自由文字
+      +時間:TJ_時間
+      +單位/作者:TJ_單位
+      +主題關鍵字:自由文字
+      +空間範圍關鍵字:自由文字
+      +主題類型:TJ_主題類型
+      +資料類型:TJ_資料類型
+      +格式:自由文字
+      +資料使用限制
+      +參考來源:自由文字
+
+  }
+  Class TJ_文獻書籍 {
+      +名稱:自由文字
+      +名稱:自由文字
+  }
+
+  Class TJ_SpatialMetadata {
+      +空間範圍.x.min:Angle
+      +空間範圍.x.max:Angle
+      +空間範圍.y.min:Angle
+      +空間範圍.y.max:Angle
+      +坐標參考系統:自由文字
+      +空間解析度:Real
+      +比例尺:Integer
+      +資料處理歷程:自由文字
+      +波段資訊:TJ_波段
+  }
+
+  Class TJ_掃描圖像 {
+      +原件來源:自由文字
+      +原件尺寸:自由文字
+      +掃描解析度:自由文字
+  }
+
+  TJ_Metadata <|-- TJ_文獻書籍
+  TJ_Metadata <|-- TJ_SpatialMetadata
+  TJ_Metadata <|-- TJ_掃描圖像
+  TJ_SpatialMetadata <|-- TJ_掃描圖像
+
+@enduml
+```

@@ -1,0 +1,16 @@
+<table><tr><td>屬性名稱</td><td>定義</td></tr><tr>
+                <td>finished</td>
+                <td></td>
+            </tr><tr>
+                <td>revised</td>
+                <td></td>
+            </tr><tr>
+                <td>published</td>
+                <td></td>
+            </tr><tr>
+                <td>posted</td>
+                <td></td>
+            </tr><tr>
+                <td>time_peroid_of_content</td>
+                <td></td>
+            </tr></table>

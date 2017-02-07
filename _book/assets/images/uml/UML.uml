@@ -1,0 +1,200 @@
+```uml
+@startuml
+
+  Class TJ_Metadata {
+    +名稱:自由文字
+    +識別碼:自由文字
+    +資料類型:TJ_資料類型
+    +所屬子計畫:子計畫代碼
+    +摘要:自由文字
+    +語言:CodeList
+    +編碼:CodeList
+    +時間解析度:自由文字
+    +起始時間:W3C_NOTE-datetime
+    +結束時間:W3C_NOTE-datetime
+    +作者:自由文字
+    +作者電子信箱:自由文字
+    +作者聯絡電話:自由文字
+    +維護者:自由文字
+    +維護者電子信箱:自由文字
+    +維護者聯絡電話:自由文字
+    +主題關鍵字:自由文字
+    +空間範圍關鍵字:自由文字
+    +空間範圍:GeoJSON
+    +空間範圍.x.min:Angle
+    +空間範圍.x.max:Angle
+    +空間範圍.y.min:Angle
+    +空間範圍.y.max:Angle
+    +主題類型:TJ_主題類型
+    +格式:自由文字
+    +資料使用限制:CodeList
+    +參考來源:自由文字
+  }
+  Class TJ_文獻書籍 {
+    +國際標準書號 ISBN:自由文字
+    +國際標準期刊號 ISSN:自由文字
+    +期刊:自由文字
+    +卷期:自由文字
+    +論文集名稱:自由文字
+    +出版地:自由文字
+    +出版社:自由文字
+    +出版年:Year
+    +書目查詢:自由文字
+    +原文網址:自由文字
+    +使用史料:TJ_使用史料類型
+    +研究區的聚落名:自由文字
+    +研究區的宗教:自由文字
+    +研究區的家族:自由文字
+    +研究區的埤圳:自由文字
+    +研究區的特殊產業:自由文字
+    +備註:自由文字
+  }
+
+  Class TJ_SpatialMetadata {
+    +坐標參考系統:自由文字
+    +空間解析度:Real
+    +比例尺:Integer
+    +資料處理歷程:自由文字
+    +波段資訊:TJ_波段
+  }
+
+  Class TJ_掃描圖像 {
+    +原件來源:自由文字
+    +原件尺寸:自由文字
+    +掃描解析度:自由文字
+  }
+
+  TJ_Metadata <|-- TJ_文獻書籍
+  TJ_Metadata <|-- TJ_SpatialMetadata
+  TJ_Metadata <|-- TJ_掃描圖像
+  TJ_SpatialMetadata <|-- TJ_掃描圖像
+
+@enduml
+```,```uml
+@startuml
+
+  Class 子計畫代碼 <<CodeList>> {
+    +子計畫一
+    +子計畫二
+    +子計畫三
+    +子計畫四
+    +未選取
+  }
+
+  Class TJ_資料類型 <<CodeList>> {
+    +統計資料
+    +文獻書籍
+    +掃描圖像-非空間類
+    +掃描圖像-空間類
+    +網格資料 grid
+    +向量資料 vector
+    +不規則三角網
+    +立體像對
+    +影音多媒體
+  }
+
+  Class TJ_使用史料類型 <<CodeList>> {
+    +清代方志
+    +日治出版品與官方資料
+    +戰後官方資料與鄉鎮志
+    +碑文
+    +報紙
+    +地圖
+    +台灣總督府檔案 ex公文類纂、府報、調查報告、職員錄、衛生法規
+    +荷治時期檔案
+    +地方田野收集文獻 ex族譜、寺廟志、帳冊、契約
+  }
+
+  Class TJ_時間 <<DataType>> {
+    +類型:TJ_時間類型
+    +時間:W3C_NOTE-datetime
+    +時間解析度:自由文字
+    +年代:自由文字
+  }
+
+  Class TJ_單位 <<DataType>> {
+    +類型:TJ_單位類型
+    +名稱:自由文字
+    +聯絡人:自由文字
+    +聯絡電話:自由文字
+    +連絡信箱:自由文字
+  }
+
+  Class TJ_主題類型 <<enumeration>> {
+    +oceans=014
+    +climatologyMeteorologyAtmosphere=004
+    +boundaries=003
+    +farming=001
+    +structure=017
+    +transportation=018
+    +elevation=006
+    +economy=005
+    +biota=002
+    +location=013
+    +utilitiesCommunication=019
+    +society=016
+    +environment=007
+    +intelligenceMilitary=011
+    +planningCadastre=015
+    +health=009
+    +geoscientificInformation=008
+    +inlandWaters=012
+    +imageryBaseMapsEarthCover=010
+  }
+
+  Class TJ_單位類型 <<CodeList>> {
+    +作者
+    +生產者
+    +供應者
+    +出版者
+    +維護者
+  }
+
+  Class TJ_時間類型 <<CodeList>> {
+    +完成
+    +修訂
+    +出版
+    +發布
+    +資料內容涵蓋
+  }
+
+  Class TJ_波段 <<CodeList>> {
+    +波段最大值:Real
+    +波段最小值:Real
+    +波段位元值:Integer
+  }
+
+@enduml
+```,```uml
+@startuml
+
+  Class CodeList {
+
+  }
+
+  Class Real {
+
+  }
+
+  Class W3C_NOTE-datetime {
+
+  }
+
+  Class Angle {
+
+  }
+
+  Class Year {
+
+  }
+
+  Class Integer {
+
+  }
+
+  Class GeoJSON {
+
+  }
+
+@enduml
+```

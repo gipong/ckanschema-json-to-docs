@@ -1,0 +1,16 @@
+<table><tr><td>屬性名稱</td><td>定義</td></tr><tr>
+                <td>author</td>
+                <td></td>
+            </tr><tr>
+                <td>producer</td>
+                <td></td>
+            </tr><tr>
+                <td>provider</td>
+                <td></td>
+            </tr><tr>
+                <td>publisher</td>
+                <td></td>
+            </tr><tr>
+                <td>maintainer</td>
+                <td></td>
+            </tr></table>
