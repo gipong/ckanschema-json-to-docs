@@ -1,4 +1,1 @@
-# TJ UML diagram
-
-TJ UML diagram
-
+UML diagram

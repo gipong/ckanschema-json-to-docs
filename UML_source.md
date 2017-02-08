@@ -10,55 +10,55 @@ UML diagram
     /'{"def":"資料集名稱","zhTW":"標題","值域":"自由文字"}'/
     +name[1..1]:CharacterString 
     /'{"def":"資料集詮釋資料網址 ","zhTW":"網址","值域":"unicode","note":"為CKAN預設之欄位"}'/
-    +identifier:CharacterString 
+    +identifier[0..1]:CharacterString
     /'{"def":"資料集檔案原始具有之唯一識別碼","zhTW":"識別碼","值域":"自由文字"}'/
-    +data_type:Data_type 
+    +data_type[0..1]:Data_type
     /'{"def":"資料集所屬之類型","zhTW":"資料類型","值域":"codelist"}'/
-    +proj:Subproject_code 
+    +proj[0..1]:Subproject_code
     /'{"def":"資料集所屬之子計畫","zhTW":"所屬子計畫","值域":"codelist"}'/
-    +notes:CharacterString 
+    +notes[0..1]:CharacterString
     /'{"def":"資料集之重要特性說明","zhTW":"摘要","值域":"自由文字"}'/
-    +owner_org:CharacterString 
+    +owner_org[0..1]:CharacterString
     /'{"def":"資料集所屬之組織單位","zhTW":"組織","值域":"codelist","note":"為CKAN預設之欄位"}'/
-    +language:Language_type 
+    +language[0..1]:Language_type
     /'{"def":"資料集檔案原始之語系","zhTW":"語言","值域":"codelist"}'/
-    +encoding:Encoding_type 
+    +encoding[0..1]:Encoding_type
     /'{"def":"資料集檔案之字元編碼標準","zhTW":"編碼","值域":"codelist"}'/
-    +temp_res:Temp_res_type 
+    +temp_res[0..1]:Temp_res_type
     /'{"def":"資料集檔案內容所代表時間之最細致時間單位","zhTW":"時間解析度","值域":"codelist"}'/
-    +start_time:W3C_NOTE-datetime 
+    +start_time[0..1]:W3C_NOTE-datetime
     /'{"def":"資料集檔案內容所代表時間之起始時間點(段)","zhTW":"起始時間","值域":"由時間解析度決定。接受的格式為 'YYYY' (年/十年/百年)、'YYYY-MM' (月)、'YYYY-MM-DD' (日)。Depend on the temporal resolution setting. Acceptable formats: 'YYYY', 'YYYY-MM', or 'YYYY-MM-DD'."}'/
-    +end_time:W3C_NOTE-datetime 
+    +end_time[0..1]:W3C_NOTE-datetime
     /'{"def":"資料集檔案內容所代表時間之結束時間點(段)","zhTW":"結束時間","值域":"由時間解析度決定。接受的格式為 'YYYY' (年/十年/百年)、'YYYY-MM' (月)、'YYYY-MM-DD' (日)。Depend on the temporal resolution setting. Acceptable formats: 'YYYY', 'YYYY-MM', or 'YYYY-MM-DD'."}'/
-    +time_period:Time_period_type 
+    +time_period[0..1]:Time_period_type
     /'{"def":"資料集檔案內容所代表時間之歷史時期","zhTW":"時間區間捷徑","值域":"codelist"}'/
-    +author_name:CharacterString 
+    +author_name[0..1]:CharacterString
     /'{"def":"資料集檔案之原始創作者或單位","zhTW":"作者","值域":"自由文字"}'/
-    +author_mail:CharacterString 
+    +author_mail[0..1]:CharacterString
     /'{"def":"創作者(單位)之電子郵件信箱","zhTW":"作者電子郵件","值域":"自由文字"}'/
-    +author_phone:CharacterString 
+    +author_phone[0..1]:CharacterString
     /'{"def":"創作者(單位)之聯絡電話","zhTW":"作者聯絡電話","值域":"自由文字"}'/
-    +maintainer_name:CharacterString 
+    +maintainer_name[0..1]:CharacterString
     /'{"def":"負責維護資料集檔案之人員或單位","zhTW":"維護者","值域":"自由文字"}'/
-    +maintainer_mail:CharacterString 
+    +maintainer_mail[0..1]:CharacterString
     /'{"def":"維護者之電子郵件信箱","zhTW":"維護者電子郵件","值域":"自由文字"}'/
-    +maintainer_phone:CharacterString 
+    +maintainer_phone[0..1]:CharacterString
     /'{"def":"維護者之聯絡電話","zhTW":"維護者聯絡電話","值域":"自由文字"}'/
     +theme_keyword[1..3]:Theme_keyword_type 
     /'{"def":"可具體描述資料集主題的常用字彙或專有名詞","zhTW":"主題關鍵字","值域":"codelist"}'/
     +loc_keyword[1..3]:CharacterString 
     /'{"def":"可具體描述資料集空間範圍的地名或專有名詞","zhTW":"空間範圍關鍵字","值域":"codelist"}'/
-    +spatial:GeoJSON 
+    +spatial[0..1]:GeoJSON
     /'{"def":"描述資料檔案所涵蓋之空間範圍","zhTW":"空間範圍","值域":"自由文字","note":"為CKAN預設之欄位"}'/
-    +x_min:Angle 
+    +x_min[0..1]:Angle
     /'{"def":"資料檔案內容所涵蓋空間範圍之最西經度，以角度表示","zhTW":"最西經度值","值域":"-180,0 <= 最西經度值<= 180,0"}'/
-    +x_max:Angle 
+    +x_max[0..1]:Angle
     /'{"def":"資料檔案內容所涵蓋空間範圍之最東經度，以角度表示","zhTW":"最東經度值","值域":"-180,0 <= 最東經度值<= 180,0"}'/
-    +y_min:Angle 
+    +y_min[0..1]:Angle
     /'{"def":"資料檔案內容所涵蓋空間範圍之最南緯度，以角度表示","zhTW":"最南緯度值","值域":"-90,0 <= 最南緯度值<= 90,0;"}'/
-    +y_max:Angle
+    +y_max[0..1]:Angle
     /'{"def":"資料檔案內容所涵蓋空間範圍之最北緯度，以角度表示","zhTW":"最北緯度值","值域":"-90,0 <= 最北緯度值<= 90,0;"}'/
-    +subject:Theme_type 
+    +subject[0..1]:Theme_type
     /'{"def":"資料檔案內容描述現象之主題分類","zhTW":"主題分類","值域":"codelist"}'/
     +license_id[1..1]:License_code 
     /'{"def":"資料檔案授權之方式","zhTW":"授權","值域":"codelist"}'/
@@ -66,57 +66,53 @@ UML diagram
     /'{"def":"資料集有關之參考資源描述","zhTW":"參考來源","值域":"自由文字"}'/
     +tag_string[0..*]:CharacterString 
     /'{"def":"描述資料集主題或空間的字彙標籤","zhTW":"主題分類","值域":"自由文字","note":"為CKAN預設之欄位"}'/
-    +created_time:CharacterString 
+    +created_time[0..1]:CharacterString
     /'{"def":"資料集檔案產出時間","zhTW":"主題分類","值域":"此處填寫資料產出時間，接受的格式為 'YYYY'、'YYYY-MM'、'YYYY-MM-DD'。若未填寫月 (日)，則由 '01' 取代。The time when data become available. Acceptable formats: 'YYYY', 'YYYY-MM', or 'YYYY-MM-DD'. Missing month (Day) will be filled with '01'"}'/
   }
   Class Ref_book {
-    +book_isbn:CharacterString
+    +book_isbn[0..1]:CharacterString
     /'{"def":"文獻書籍資料之國際標準書號","zhTW":"國際標準書[isbn]","值域":"自由文字"}'/
-    +book_issn:CharacterString
+    +book_issn[0..1]:CharacterString
     /'{"def":"文獻書籍資料之國際標準叢刊號","zhTW":"國際標準叢刊號[issn]","值域":"自由文字"}'/
-    +book_journal:CharacterString
+    +book_journal[0..1]:CharacterString
     /'{"def":"文獻書籍資料之期刊名稱","zhTW":"期刊名稱","值域":"自由文字"}'/
-    +book_volume:Interger
+    +book_volume[0..1]:Interger
     /'{"def":"文獻書籍資料之卷號","zhTW":"卷期","值域":"整數"}'/
-    +book_proceeding:CharacterString
+    +book_proceeding[0..1]:CharacterString
     /'{"def":"文獻書籍資料之論文集名稱","zhTW":"論文集名稱","值域":"自由文字"}'/
-    +book_location:CharacterString
+    +book_location[0..1]:CharacterString
     /'{"def":"文獻書籍資料之出版地","zhTW":"出版地","值域":"自由文字"}'/
-    +book_publisher:CharacterString
+    +book_publisher[0..1]:CharacterString
     /'{"def":"文獻書籍資料之出版社","zhTW":"出版社","值域":"自由文字"}'/
-    +book_year:Interger
+    +book_year[0..1]:Interger
     /'{"def":"文獻書籍資料之出版年份","zhTW":"出版年份","值域":"整數"}'/
-    +book_query:CharacterString
+    +book_query[0..1]:CharacterString
     /'{"def":"文獻書籍資料之出版社","zhTW":"書目查詢","值域":"自由文字"}'/
-    +book_url:CharacterString
+    +book_url[0..1]:CharacterString
     /'{"def":"文獻書籍資料之電子資源連結","zhTW":"網址","值域":"自由文字"}'/
     +book_hist_materials[0..*]:Hist_material_type
     /'{"def":"文獻書籍資料產出所參考之歷史資源","zhTW":"使用史料","值域":"自由文字"}'/
-    +book_notes:CharacterString
+    +book_notes[0..1]:CharacterString
     /'{"def":"文獻書籍資料之備註說明","zhTW":"備註","值域":"自由文字"}'/
   }
 
   Class SpatialMetadata {
-    +resource_crs:Integer
+    +resource_crs[0..1]:Integer
     /'{"def":"空間資料集之坐標參考系統EPSG代碼","zhTW":"坐標系統","值域":"整數"}'/ 
-    +spatial_res:Real
+    +spatial_res[0..1]:Real
     /'{"def":"空間資料集資料之地面取樣距離","zhTW":"空間解析度","值域":"實數","note":"距離單位為公尺"}'/
-    +scale:Integer
+    +scale[0..1]:Integer
     /'{"def":"空間資料集資料之以等同紙圖或統計圖表比例尺方式所表示之比例尺分母數值","zhTW":"比例尺","值域":"整數","note":"記錄比例尺之分母"}'/
-    +preprocessing/*Lineage:CharacterString
-    /'{"def":"空間資料集資料之處理歷程","zhTW":"處理歷程","值域":"自由文字"}'/ 
-    +preprocessing/*Lineage:CharacterString
-    /'{"def":"空間資料集資料之處理歷程","zhTW":"處理歷程","值域":"自由文字"}'/ 
-    +preprocessing/*Lineage:CharacterString
-    /'{"def":"空間資料集資料之處理歷程","zhTW":"處理歷程","值域":"自由文字"}'/ 
+    +preprocessing/*Lineage[0..1]:CharacterString
+    /'{"def":"空間資料集資料之處理歷程","zhTW":"處理歷程","值域":"自由文字"}'/
   }
 
   Class Scan_pics {
-    +scan_source:CharacterString
+    +scan_source[0..1]:CharacterString
     /'{"def":"掃描圖像之原件來源、名稱或出處","zhTW":"原件來源","值域":"自由文字"}'/ 
-    +scan_size:CharacterString
+    +scan_size[0..1]:CharacterString
     /'{"def":"掃描圖像之原件尺寸大小","zhTW":"原件尺寸","值域":"自由文字","note":"格式為長度x寬度，以公分為單位"}'/ 
-    +scan_res:CharacterString
+    +scan_res[0..1]:CharacterString
     /'{"def":"掃描圖像之掃描解析度數值","zhTW":"掃描解析度","值域":"自由文字","note":"以DPI為單位"}'/ 
   }
 
@@ -131,16 +127,16 @@ UML diagram
 ```uml
 @startuml
 
-  Class Resource_Metadat{
-    +resource_title[1..1]:CharacterString 
+  Class Resource_Metadata {
+    +name[1..1]:CharacterString
     /'{"def":"資料檔案之名稱","zhTW":"檔案名稱","值域":"自由文字","note":"為CKAN預設之欄位"}'/
-    +resource_url[1..1]:CharacterString 
+    +url[1..1]:CharacterString
     /'{"def":"資料檔案線上連結之網址","zhTW":"網址","值域":"unicode","note":"為CKAN預設之欄位"}'/
-    +resource_format[1..1]:CharacterString 
+    +format[1..1]:CharacterString
     /'{"def":"資料檔案傳輸格式之名稱","zhTW":"格式","值域":"unicode","note":"為CKAN預設之欄位"}'/
-    +resource_crs:Integer
+    +resource_crs[0..1]:Integer
     /'{"def":"空間資料集檔案之坐標參考系統EPSG代碼","zhTW":"坐標系統","值域":"整數"}'/ 
-    +resource_des:CharacterString
+    +description[0..1]:CharacterString
     /'{"def":"資料檔案之重要特性說明","zhTW":"摘要","值域":"摘要","note":"為CKAN預設之欄位"}'/ 
   }
 
