@@ -1,3 +1,5 @@
+//  node parsingUML.js taijiang_scheming.json UML_source.md
+
 var fs = require('fs');
 var async = require('async');
 
