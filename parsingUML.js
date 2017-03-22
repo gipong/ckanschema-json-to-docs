@@ -1,4 +1,5 @@
 //  node parsingUML.js taijiang_scheming.json UML_source.md
+//  gitbook serve
 
 var fs = require('fs');
 var async = require('async');
@@ -18,7 +19,7 @@ var index = '';
 var dataset_temp = `<table>
         <tr><td>屬性名稱</td><td>定義</td>
         <td>選填條件</td><td>最多發生次數</td><td>資料型別</td>
-        <td>值域</td><td>備註</td></tr>`;
+        <td>值域</td><td>備git註</td></tr>`;
 
 for(var i in uml) {
     var check = uml[i].split(/(\s+)/);
@@ -200,10 +201,10 @@ fs.readFile(umlFile, function(err, data) {
 
 var summaryTemp = `#Summary
 * [Introduction](README.md)
-* [UML diagram](UML.md)
-    * [zhTW](UML_zhTW.md)
+* [Metadata (UML diagram)](UML.md)
+    * [zh-TW](UML_zhTW.md)
     * [en](UML_source.md)
-* [Dataset Fields](Dataset_field.md)
+* [Metadata (Table view)](Dataset_field.md)
 `;
 
 fs.writeFile(`README.md`, `Introduction`, 'utf-8', function(err) {
@@ -215,6 +216,9 @@ fs.writeFile(`UML.md`, `UML diagram`, function(err) {
 fs.writeFile(`Dataset_field.md`, `Dataset field page`, 'utf-8', function(err) {
     if(err) { return console.log(err); }
 });
+fs.writeFile(`Appendix.md`, `![upload](ckan_upload_flowchart_gipong.png)`, 'utf-8', function(err) {
+    if(err) { return console.log(err); }
+});
 
 fs.readdir(`./datasetFields_md`, function(err, items) {
     items.forEach(function(item) {
@@ -224,6 +228,7 @@ fs.readdir(`./datasetFields_md`, function(err, items) {
         items.forEach(function(item) {
             summaryTemp += `* [Resource Fields](./resourceFields_md/${item})\n`;
         });
+        summaryTemp += `* [Appendix](./Appendix.md)\n`;
         fs.writeFile(`SUMMARY.md`, summaryTemp, 'utf-8', function(err) {
             if(err) { return console.log(err); }
         });

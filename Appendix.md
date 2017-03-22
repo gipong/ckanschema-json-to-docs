@@ -1,0 +1,1 @@
+![upload](ckan_upload_flowchart_gipong.png)

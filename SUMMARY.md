@@ -1,9 +1,9 @@
 #Summary
 * [Introduction](README.md)
-* [UML diagram](UML.md)
-    * [zhTW](UML_zhTW.md)
+* [Metadata (UML diagram)](UML.md)
+    * [zh-TW](UML_zhTW.md)
     * [en](UML_source.md)
-* [Dataset Fields](Dataset_field.md)
+* [Metadata (Table view)](Dataset_field.md)
     * [Data_type.md](./datasetFields_md/Data_type.md)
     * [Encoding_type.md](./datasetFields_md/Encoding_type.md)
     * [Hist_material_type.md](./datasetFields_md/Hist_material_type.md)
@@ -20,3 +20,4 @@
     * [Theme_type.md](./datasetFields_md/Theme_type.md)
     * [Time_period_type.md](./datasetFields_md/Time_period_type.md)
 * [Resource Fields](./resourceFields_md/Resource_Metadata.md)
+* [Appendix](./Appendix.md)

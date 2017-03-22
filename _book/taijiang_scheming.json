@@ -12,7 +12,7 @@
       "preset": "title",
       "form_placeholder": {
         "en": "eg. A descriptive title",
-	"zh_TW": "例如：一個描述性的標題"
+	    "zh_TW": "例如：一個描述性的標題"
       }
     },
     {
