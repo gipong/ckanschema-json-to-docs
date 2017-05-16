@@ -39,7 +39,7 @@ for(var i in uml) {
     }
 
     if(addList[0] == '/') {
-        var attr = JSON.parse(/\/'(.*)'\//g.exec(addList)[1]);
+        var attr = JSON.parse(/\/'(.*)'\//g.exec(addList[1]));
         var len = classList[index].length;
         var key = classList[index][len-1][0];
         noteList[key] = attr;

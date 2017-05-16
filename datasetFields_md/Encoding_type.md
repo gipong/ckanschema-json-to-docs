@@ -1,5 +1,5 @@
 <table><tr><td>屬性名稱</td><td>定義</td></tr><tr>
-                <td>zho </td>
+                <td>zho</td>
                 <td></td>
             </tr><tr>
                 <td>hak</td>

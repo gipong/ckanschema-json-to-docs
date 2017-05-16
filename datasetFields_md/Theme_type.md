@@ -1,58 +1,58 @@
 <table><tr><td>屬性名稱</td><td>定義</td></tr><tr>
                 <td>oceans</td>
-                <td>與鹽水水體的特徵物和其特性（包含內陸地區）有關之主題<br>例如潮汐、受潮汐影響的浪潮、海岸資訊、暗礁</td>
+                <td></td>
             </tr><tr>
                 <td>climatologyMeteorologyAtmosphere</td>
-                <td>與大氣的處理過程與現象有關之主題<br>例如雲、天氣、氣候、大氣條件、氣候改變、降雨量</td>
+                <td></td>
             </tr><tr>
                 <td>boundaries</td>
-                <td>與土地權利描述有關之主題<br>例如行政邊界界線</td>
+                <td></td>
             </tr><tr>
                 <td>farming</td>
-                <td>與動物飼養和/或植物種植有關之主題<br>例如農耕、灌溉、水栽法、農園、畜牧、病蟲害和家畜</td>
+                <td></td>
             </tr><tr>
                 <td>structure</td>
-                <td>與人工設施有關之主題<br>例如建築物、博物館、教堂、工廠、住家、紀念碑、商店、塔樓</td>
+                <td></td>
             </tr><tr>
                 <td>transportation</td>
-                <td>與運輸有關之主題<br>例如道路、機場/航線、運輸路線、隧道、航海圖、飛機或船之位置、航圖、鐵路</td>
+                <td></td>
             </tr><tr>
                 <td>elevation</td>
-                <td>高於或低於海平面的高程資訊<br>例如高度、海洋探測、數值高程模型、坡度</td>
+                <td></td>
             </tr><tr>
                 <td>economy</td>
-                <td>與經濟活動和狀態有關的主題<br>例如生產、勞動、稅收、貿易、工業、觀光和生態旅遊、林業、漁業、商業或補狩業、探測和資源開發，如礦物、石油或天然氣</td>
+                <td></td>
             </tr><tr>
                 <td>biota</td>
-                <td>與自然環境中植物群和/或動物群有關之主題<br>例如野生動物、植被、生物科學、生態學、荒漠、海洋生活、溼地、棲息地</td>
+                <td></td>
             </tr><tr>
                 <td>location</td>
-                <td>與位置資訊和服務有關之主題<br>例如地址、控制網、控制點、郵遞區號及服務</td>
+                <td></td>
             </tr><tr>
                 <td>utilitiesCommunication</td>
-                <td>與能源、廢棄物系統和公共通訊服務有關之主題<br>例如水利發電、地熱發電、太陽能與核能、水質淨化與供給、污水收集處理、電力和天然氣供給、數據交換、長途電信、無線電、通信網路</td>
+                <td></td>
             </tr><tr>
                 <td>society</td>
-                <td>與社會文化特性有關之主題<br>例如社會福利、人類學、考古學、教育、傳統信仰、禮俗習慣、人口統計資料、娛樂活動、社會影響的評價、犯罪、司法審判、人口普查情報</td>
+                <td></td>
             </tr><tr>
                 <td>environment</td>
-                <td>與環境資源、保護和保存有關的主題<br>例如環境汙染、資源浪費、環境衝擊評估、環境監控風險、天然保育區、景觀</td>
+                <td></td>
             </tr><tr>
                 <td>intelligenceMilitary</td>
-                <td>與軍事基地、結構、活動有關之主題<br>例如兵營、訓練場、軍事運輸、情報搜集</td>
+                <td></td>
             </tr><tr>
                 <td>planningCadastre</td>
-                <td>與土地未來之使用資訊有關之主題<br>例如土地使用圖、都市計畫圖、地籍調查、土地所有權</td>
+                <td></td>
             </tr><tr>
                 <td>health</td>
-                <td>與健康、健康服務、人文生態學與環境安全有關之主題<br>例如疾病與身體不適、影響健康的因素、保健法、藥物濫用、身心健康、健康服務</td>
+                <td></td>
             </tr><tr>
                 <td>geoscientificInformation</td>
-                <td>與地球科學有關之主題<br>例如地球物理學的地物特徵、地質學、礦產資源、組合科學、地球岩盤的組成起源、地震危機、火山活動、山崩、重力資訊、土壤、永久凍土、水文地質學、侵蝕</td>
+                <td></td>
             </tr><tr>
                 <td>inlandWaters</td>
-                <td>與內陸地區的水特徵物、排水系統和其特性有關之主題<br>例如河流與冰河、鹽水湖、水資源利用計畫、水壩、水流、水災、水質、水道圖</td>
+                <td></td>
             </tr><tr>
                 <td>imageryBaseMapsEarthCover</td>
-                <td>與底圖有關之主題<br>例如地表、地形圖、影像、未分類的影像、文字註記</td>
+                <td></td>
             </tr></table>

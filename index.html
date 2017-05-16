@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+    <link rel="stylesheet" type="text/css" href="semantic.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="semantic.min.js"></script>
+</head>
+<body>
+<div id="umlDiv" style="width:960px; height: 480px"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.7.9/go.js"></script>
+<script>
+	var $ = go.GraphObject.make;
+	var umlDiv = $(go.Diagram, "umlDiv", {
+		initialContentAlignment: go.Spot.Center,
+		"undoManager.isEnabled": true,
+		layout: $(go.TreeLayout, {
+			angle: 90,
+			path: go.TreeLayout.PathSource,
+			setsPortSpot: false,
+			setsChildPortSpot: false,
+			arrangement: go.TreeLayout.ArrangementHorizontal
+		})
+	});
+
+	function convertVisibility(v) {
+		switch (v) {
+			case "public": return "+";
+			case "private": return "-";
+			case "protected": return "#";
+			case "package": return "~";
+			default: return v;
+		}
+	}
+
+	var propertyTemplate = $(go.Panel, "Horizontal",
+		$(go.TextBlock, {
+			isMultiline: false, editable: false, width: 12
+		},  new go.Binding("text", "visibility", convertVisibility)),
+		$(go.TextBlock, {
+			isMultiline: false, editable: true
+		},  new go.Binding("text", "name").makeTwoWay(),
+			new go.Binding("isUnderline", "scope", function(s) {return s[0] === 'c';})),
+		$(go.TextBlock, "",
+			new go.Binding("text", "type", function(t) {return (t ? ": ":"");})),
+		$(go.TextBlock, {
+			isMultiline: false, editable: true
+		},  new go.Binding("text", "type").makeTwoWay()),
+		$(go.TextBlock, {
+			isMultiline: false, editable: false
+		},  new go.Binding("text", "dafault", function(s) {return s?"= "+s:"";}))
+
+	);
+
+	umlDiv.nodeTemplate =
+		$(go.Node, "Auto",
+			{
+				locationSpot: go.Spot.Center,
+				fromSpot: go.Spot.AllSides,
+				toSpot: go.Spot.AllSides
+			},
+            { selectionAdornmentTemplate:
+                $(go.Adornment, "Spot",
+                    $(go.Panel, "Auto",
+                        $(go.Shape, "Rectangle",
+                            { fill: null, stroke: "dodgerblue", strokeWidth: 8 }
+                        ), $(go.Placeholder)
+                    ),
+                    $(go.Panel, "Vertical",
+                        { alignment: go.Spot.Right, alignmentFocus: go.Spot.Left },
+                        $("Button",
+                            { alignment: go.Spot.Left, alignmentFocus: go.Spot.Left, click: ne_createNew },
+                            $(go.TextBlock, "Create New", { font: "bold 6pt sans-serif" })
+                        ),
+                        $("Button",
+                            { alignment: go.Spot.Left, alignmentFocus: go.Spot.Left, click: ne_generalization },
+                            $(go.TextBlock, "Generalization", { font: "bold 6pt sans-serif" })
+                        ),
+                        $("Button",
+                            { alignment: go.Spot.Left, alignmentFocus: go.Spot.Left, click: ne_aggregation },
+                            $(go.TextBlock, "Aggregation", { font: "bold 6pt sans-serif" })
+                        )
+                    ),
+                    $(go.Panel, "Vertical",
+                        { alignment: go.Spot.Left, alignmentFocus: go.Spot.Right },
+                        $("Button",
+                            { alignment: go.Spot.Right, alignmentFocus: go.Spot.Right, click: ne_newProps },
+                            $(go.TextBlock, "New Props", { font: "bold 6pt sans-serif" })
+                        ),
+                        $("Button",
+                            { alignment: go.Spot.Right, alignmentFocus: go.Spot.Right, click: ne_removeClass },
+                            $(go.TextBlock, "Remove Class", { font: "bold 6pt sans-serif" })
+                        )
+                    )
+
+                )
+            },
+			$(go.Shape, { fill: "lightyellow" }),
+			$(go.Panel, "Table",
+				{ defaultRowSeparatorStroke: "black" },
+				// header
+				$(go.TextBlock,
+					{
+						row: 0, columnSpan: 2, margin: 3, alignment: go.Spot.Center,
+						font: "bold 12pt sans-serif",
+						isMultiline: false, editable: true
+					},
+					new go.Binding("text", "name").makeTwoWay()),
+				// properties
+				$(go.TextBlock, "Properties",
+					{ row: 1, font: "italic 10pt sans-serif" },
+					new go.Binding("visible", "visible", function(v) { return !v; }).ofObject("PROPERTIES")),
+				$(go.Panel, "Vertical", { name: "PROPERTIES" },
+					new go.Binding("itemArray", "properties"),
+					{
+						row: 1, margin: 3, stretch: go.GraphObject.Fill,
+						defaultAlignment: go.Spot.Left, background: "lightyellow",
+						itemTemplate: propertyTemplate
+					}
+				),
+				$("PanelExpanderButton", "PROPERTIES",
+					{ row: 1, column: 1, alignment: go.Spot.TopRight, visible: false },
+					new go.Binding("visible", "properties", function(arr) { return arr.length > 0; })),
+				// methods
+				$(go.TextBlock, "Methods",
+					{ row: 2, font: "italic 10pt sans-serif" },
+					new go.Binding("visible", "visible", function(v) { return !v; }).ofObject("METHODS")),
+				$(go.Panel, "Vertical", { name: "METHODS" },
+					new go.Binding("itemArray", "methods"),
+					{
+						row: 2, margin: 3, stretch: go.GraphObject.Fill,
+						defaultAlignment: go.Spot.Left, background: "lightyellow"}
+				),
+				$("PanelExpanderButton", "METHODS",
+					{ row: 2, column: 1, alignment: go.Spot.TopRight, visible: false },
+					new go.Binding("visible", "methods", function(arr) { return arr.length > 0; }))
+			)
+		);
+
+	function convertIsTreeLink(r) {
+		return r === "generalization";
+	}
+
+	function convertFromArrow(r) {
+		switch (r) {
+			case "generalization": return "";
+			default: return "";
+		}
+	}
+
+	function convertToArrow(r) {
+		switch (r) {
+			case "generalization": return "Triangle";
+			case "aggregation": return "StretchedDiamond";
+			default: return "";
+		}
+	}
+
+	umlDiv.linkTemplate =
+		$(go.Link,
+			{ routing: go.Link.Orthogonal },
+            new go.Binding("isLayoutPositioned", "relationship", convertIsTreeLink),
+            $(go.Shape),
+            $(go.Shape, { scale: 1.3, fill: "white" },
+                new go.Binding("fromArrow", "relationship", convertFromArrow)),
+            $(go.Shape, { scale: 1.3, fill: "white" },
+                new go.Binding("toArrow", "relationship", convertToArrow))
+		);
+
+    var nodeData = [
+        {
+            key: 1,
+            name: "BankAccout",
+            properties: [
+                { name: "owner", type: "String", visibility: "public" },
+                { name: "balance", type: "Currency", visibility: "public", default: "0"}
+            ]
+        },
+        {
+            key: 2,
+            name: "Person",
+            properties: [
+                { name: "name", type: "String", visibility: "public" },
+                { name: "birth", type: "Date", visibility: "protected" }
+            ]
+        }
+    ];
+    var nodeIndex = nodeData.length;
+
+    var linkData = [
+        { from: 1, to: 2, relationship: "generalization" }
+    ];
+
+    function nodeEvent(e, b) {
+        console.log(e, b);
+    }
+
+    function ne_createNew(e, b) {
+        var node = b.part.adornedPart;
+        var diagram = node.diagram;
+
+        console.log(diagram.model.toJSON());
+
+        diagram.startTransaction();
+
+        var newNode = {
+            key: ++nodeIndex,
+            name: "NewOne",
+            properties: [
+                { name: "newprops", type: "String", visibility: "public"}
+            ]
+        };
+        diagram.model.addNodeData(newNode);
+        diagram.commitTransaction();
+    }
+
+    function ne_generalization(e, b) {
+        var node = b.part.adornedPart;
+        var diagram = node.diagram;
+        diagram.startTransaction();
+
+        var newNode = {
+            key: ++nodeIndex,
+            name: "NewOne",
+            properties: [
+                { name: "newprops", type: "String", visibility: "public"}
+            ]
+        };
+        diagram.model.addNodeData(newNode);
+        diagram.findNodeForData(newNode).location = node.location;
+
+        console.log(newNode.key, node.data.key);
+        var newLink = {
+            from: newNode.key, to: node.data.key, relationship: "generalization"
+        };
+
+        diagram.model.addLinkData(newLink);
+        diagram.commitTransaction();
+    }
+
+    function ne_aggregation(e, b) {
+        var node = b.part.adornedPart;
+        var diagram = node.diagram;
+        diagram.startTransaction();
+
+        var newNode = {
+            key: ++nodeIndex,
+            name: "NewOne",
+            properties: [
+                { name: "newprops", type: "String", visibility: "public"}
+            ]
+        };
+        diagram.model.addNodeData(newNode);
+        diagram.findNodeForData(newNode).location = node.location;
+
+
+        console.log(newNode.key, node.data.key);
+        var newLink = {
+            from: newNode.key, to: node.data.key, relationship: "aggregation"
+        };
+
+        diagram.model.addLinkData(newLink);
+        diagram.commitTransaction();
+    }
+
+    function ne_newProps(e, b) {
+        var node = b.part.adornedPart;
+        var diagram = node.diagram;
+
+        var setProp = JSON.parse(diagram.model.toJSON());
+        setProp.nodeDataArray[node.data.key-1].properties.push({
+            name: "newprps", type: "String", visibility: "public"
+        });
+        diagram.model = go.Model.fromJson(JSON.stringify(setProp));
+    }
+
+    function ne_removeClass(e, b) {
+        var node = b.part.adornedPart;
+        var diagram = node.diagram;
+        diagram.startTransaction();
+
+        var remove = diagram.findNodeDataForKey(node.data.key);
+        diagram.model.removeNodeData(remove);
+
+        diagram.commitTransaction();
+    }
+
+	function updateModel() {
+        umlDiv.model = $(go.GraphLinksModel, {
+            copiesArrays: true,
+            copiesArrayObjects: true,
+            nodeDataArray: nodeData,
+            linkDataArray: linkData
+        })
+    }
+
+    updateModel();
+
+</script>
+</body>
+</html>

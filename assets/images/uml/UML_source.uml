@@ -5,7 +5,7 @@
     +title[1..1]:CharacterString 
     /'{"def":"資料集名稱","zhTW":"標題","值域":"自由文字"}'/
     +name[1..1]:CharacterString 
-    /'{"def":"資料集詮釋資料網址 ","zhTW":"網址","值域":"unicode","note":"為CKAN預設之欄位"}'/
+    /'{"def":"資料集詮釋資料網址","zhTW":"網址","值域":"unicode","note":"為CKAN預設之欄位"}'/
     +identifier[0..1]:CharacterString
     /'{"def":"資料集檔案原始具有之唯一識別碼","zhTW":"識別碼","值域":"自由文字"}'/
     +data_type[0..1]:Data_type
@@ -67,7 +67,7 @@
   }
   Class Ref_book {
     +book_isbn[0..1]:CharacterString
-    /'{"def":"文獻書籍資料之國際標準書號","zhTW":"國際標準書[isbn]","值域":"自由文字"}'/
+    /'{"def":"文獻書籍資料之國際標準書號","zhTW":"國際標準書號[isbn]","值域":"自由文字"}'/
     +book_issn[0..1]:CharacterString
     /'{"def":"文獻書籍資料之國際標準叢刊號","zhTW":"國際標準叢刊號[issn]","值域":"自由文字"}'/
     +book_journal[0..1]:CharacterString
@@ -135,11 +135,16 @@
   }
 
   Class Subproject_code <<CodeList>> {
-    +proj_1 
+    +proj_1
+    /'{"def":"子計畫一"}/
     +proj_2
+    /'{"def":"子計畫二"}/
     +proj_3
+    /'{"def":"子計畫三"}/
     +proj_4
+    /'{"def":"子計畫四"}/
     +no_selection
+    /'{"def":"未選取"}/
   }
 
   Class License_code <<CodeList>> {
@@ -161,14 +166,23 @@
 
   Class Data_type <<CodeList>> {
     +statistics
+    /'{"def":"統計資料"}/
     +books
+    /'{"def":"文獻書籍"}/
     +pics_non_spatial
+    /'{"def":"掃描圖像(非空間類)"}/
     +pics_spatial
+    /'{"def":"掃描圖像(空間類)"}/
     +grid/*raster
+    /'{"def":"網格資料"}/
     +vector
+    /'{"def":"向量資料"}/
     +tin
+    /'{"def":"不規則三角網"}/
     +steropair/*stereopair
+    /'{"def":"立體像對"}/
     +multimedia
+    /'{"def":"影音多媒體"}/
   }
 
   Class Hist_material_type <<CodeList>> {
@@ -184,17 +198,17 @@
   }
 
   Class Theme_type <<Enumeration>> {
-    +oceans
+    +oceans=014
     /'{"def":"與鹽水水體的特徵物和其特性（包含內陸地區）有關之主題<br>例如潮汐、受潮汐影響的浪潮、海岸資訊、暗礁"}'/
-    +climatologyMeteorologyAtmosphere
+    +climatologyMeteorologyAtmosphere=004
     /'{"def":"與大氣的處理過程與現象有關之主題<br>例如雲、天氣、氣候、大氣條件、氣候改變、降雨量"}'/
-    +boundaries
+    +boundaries=003
     /'{"def":"與土地權利描述有關之主題<br>例如行政邊界界線"}'/
-    +farming
+    +farming=001
     /'{"def":"與動物飼養和/或植物種植有關之主題<br>例如農耕、灌溉、水栽法、農園、畜牧、病蟲害和家畜"}'/
-    +structure
+    +structure=017
     /'{"def":"與人工設施有關之主題<br>例如建築物、博物館、教堂、工廠、住家、紀念碑、商店、塔樓"}'/
-    +transportation
+    +transportation=018
     /'{"def":"與運輸有關之主題<br>例如道路、機場/航線、運輸路線、隧道、航海圖、飛機或船之位置、航圖、鐵路"}'/
     +elevation=006
     /'{"def":"高於或低於海平面的高程資訊<br>例如高度、海洋探測、數值高程模型、坡度"}'/
@@ -226,26 +240,43 @@
 
   Class Language_type <<CodeList>> {
     +big5
+    /'{"def":"繁體中文"}/
     +utf-8
     +latin1
+    /'{"def":"西歐字元"}/
     +gb2312
+    /'{"def":"簡體中文"}/
     +gb18030
+    /'{"def":"簡體中文"}/
     +shift_jis
+    /'{"def":"日文"}/
     +euc-jp
+    /'{"def":"日文"}/
   }
 
   Class Encoding_type <<CodeList>> {
-    +zho 
+    +zho
+    /'{"def":"現代標準漢語"}/
     +hak
+    /'{"def":"客家語"}/
     +nan
+    /'{"def":"閩南語"}/
     +yue
+    /'{"def":"粵語"}/
     +lzh
+    /'{"def":"文言文"}/
     +jpn
+    /'{"def":"日語"}/
     +eng
+    /'{"def":"英語"}/
     +spa
+    /'{"def":"西班牙語"}/
     +nld
+    /'{"def":"荷蘭語"}/
     +fos
+    /'{"def":"西拉雅語"}/
     +por
+    /'{"def":"葡萄牙"}/
   }
 
   Class Time_period_type <<CodeList>> {
@@ -271,10 +302,15 @@
 
   Class Temp_res_type <<Enumeration>> {
     +Year
+    /'{"def":"年"}/
     +Decade
+    /'{"def":"十年"}/
     +Century
+    /'{"def":"一百年"}/
     +Date
+    /'{"def":"日"}/
     +Month
+    /'{"def":"月"}/
   }
 
   Class Theme_keyword_type <<CodeList>> {
