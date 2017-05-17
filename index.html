@@ -4,17 +4,47 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
     <link rel="stylesheet" type="text/css" href="semantic.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
     <script
             src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
             crossorigin="anonymous"></script>
+    <script src="jquery.tabledit.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
     <script src="semantic.min.js"></script>
 </head>
 <body>
-<div id="umlDiv" style="width:960px; height: 480px"></div>
+<div class="ui grid">
+    <div class="sixteen wide column">
+        <div id="umlDiv" style="width:1080px; height: 520px; margin: auto"></div>
+    </div>
+</div>
+<div class="ui grid centered">
+    <div class="twelve wide cloumn" style="width: 1080px;">
+
+        <div class="ui top attached menu" id="tabContent">
+            <div class="ui pointing dropdown link item">
+                <span class="text">ClassName</span>
+                <i class="dropdown icon"></i>
+                <div class="menu" id="tabMenu">
+                    <a class="item active" data-tab="Person">Person</a>
+                    <a class="item" data-tab="BankAccount">BankAccount</a>
+                </div>
+            </div>
+        </div>
+        <div class="ui bottom attached tab segment active" data-tab="Person">
+            <div id="Person"></div>
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="BankAccount">
+            Second
+        </div>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.7.9/go.js"></script>
 <script>
+    var j = jQuery.noConflict();
 	var $ = go.GraphObject.make;
 	var umlDiv = $(go.Diagram, "umlDiv", {
 		initialContentAlignment: go.Spot.Center,
@@ -27,6 +57,25 @@
 			arrangement: go.TreeLayout.ArrangementHorizontal
 		})
 	});
+
+    j('.menu .item').tab();
+    j('.ui.dropdown').dropdown();
+
+    umlDiv.addDiagramListener("TextEdited", function(e, d) {
+        var target = e.subject.part.data;
+
+        if(!classNameList.find(function(e){return e == target.name;})) {
+            var updateText = target.name;
+            j("a[data-tab="+classNameList[target.key-1]+"]").text(updateText);
+            j("#tabMenu").parent().find("span").text(updateText);
+        }
+
+        for(var i= 0, length=target.properties.length; i< length; i++) {
+            j("#"+classNameList[target.key-1]).jsGrid("updateItem", target.properties[i]);
+        }
+
+        console.log(e.subject.part.data);
+    });
 
 	function convertVisibility(v) {
 		switch (v) {
@@ -175,7 +224,7 @@
     var nodeData = [
         {
             key: 1,
-            name: "BankAccout",
+            name: "BankAccount",
             properties: [
                 { name: "owner", type: "String", visibility: "public" },
                 { name: "balance", type: "Currency", visibility: "public", default: "0"}
@@ -185,16 +234,54 @@
             key: 2,
             name: "Person",
             properties: [
-                { name: "name", type: "String", visibility: "public" },
+                { name: "name", type: "String", visibility: "public", definition: "def about name" },
                 { name: "birth", type: "Date", visibility: "protected" }
             ]
         }
     ];
     var nodeIndex = nodeData.length;
 
+    var classNameList = [];
+
+    function updateClassNameList() {
+        nodeData.forEach(function(e) {
+           classNameList[e.key-1] = e.name;
+        });
+    }
+
+    updateClassNameList();
+
     var linkData = [
         { from: 1, to: 2, relationship: "generalization" }
     ];
+
+    j("#Person").jsGrid({
+        width: "100%",
+        height: "400px",
+
+        editing: true,
+        sorting: true,
+
+        deleteConfirm: "Do you really want to delete this item in Class?",
+
+        data: nodeData[1].properties,
+
+        onItemDeleted: function(args) {
+            console.log(args);
+        },
+        onItemDeleted: function(args) {
+            updateModel();
+        },
+
+        fields: [
+            { name: "name", type: "text", width: 50, editing: false },
+            { name: "type", type: "text", width: 50, editing: false },
+            { name: "definition", type: "text", width: 50 },
+            { name: "range", type: "text", width: 50 },
+            { name: "comment", type: "text", width: 50 },
+            { type: "control", editButton: true, modeSwitchButton: false, width: 50 }
+        ]
+    });
 
     function nodeEvent(e, b) {
         console.log(e, b);
@@ -210,13 +297,15 @@
 
         var newNode = {
             key: ++nodeIndex,
-            name: "NewOne",
+            name: "newClass"+nodeIndex,
             properties: [
                 { name: "newprops", type: "String", visibility: "public"}
             ]
         };
         diagram.model.addNodeData(newNode);
         diagram.commitTransaction();
+
+        createTab(newNode, nodeIndex);
     }
 
     function ne_generalization(e, b) {
@@ -226,7 +315,7 @@
 
         var newNode = {
             key: ++nodeIndex,
-            name: "NewOne",
+            name: "newClass"+nodeIndex,
             properties: [
                 { name: "newprops", type: "String", visibility: "public"}
             ]
@@ -241,6 +330,8 @@
 
         diagram.model.addLinkData(newLink);
         diagram.commitTransaction();
+
+        createTab(newNode, nodeIndex);
     }
 
     function ne_aggregation(e, b) {
@@ -250,7 +341,7 @@
 
         var newNode = {
             key: ++nodeIndex,
-            name: "NewOne",
+            name: "newClass"+nodeIndex,
             properties: [
                 { name: "newprops", type: "String", visibility: "public"}
             ]
@@ -266,6 +357,8 @@
 
         diagram.model.addLinkData(newLink);
         diagram.commitTransaction();
+
+        createTab(newNode, nodeIndex);
     }
 
     function ne_newProps(e, b) {
@@ -282,12 +375,19 @@
     function ne_removeClass(e, b) {
         var node = b.part.adornedPart;
         var diagram = node.diagram;
-        diagram.startTransaction();
 
-        var remove = diagram.findNodeDataForKey(node.data.key);
+        var remove = diagram.model.findNodeDataForKey(node.data.key);
         diagram.model.removeNodeData(remove);
 
-        diagram.commitTransaction();
+        var delLink = JSON.parse(diagram.model.toJSON());
+        delLink.linkDataArray.forEach(function(e, i) {
+            if(e.from == node.data.key || e.to == node.data.key) {
+                delLink.linkDataArray.splice(node.data.key-1, 1);
+            }
+        });
+
+        diagram.model = go.Model.fromJson(JSON.stringify(delLink));
+
     }
 
 	function updateModel() {
@@ -300,6 +400,45 @@
     }
 
     updateModel();
+
+    function createTab(newNode, nodeIndex) {
+        nodeData.push(newNode);
+
+        j("#tabMenu").append('<a class="item" data-tab="newClass'+nodeIndex+'">newClass'+nodeIndex+'</a>');
+        j("#tabContent").after('<div class="ui bottom attached tab segment" data-tab="newClass'+nodeIndex+'"><div id="newClass'+nodeIndex+'"></div></div>');
+
+        j("#newClass"+nodeIndex).jsGrid({
+            width: "100%",
+            height: "400px",
+
+            editing: true,
+            sorting: true,
+
+            deleteConfirm: "Do you really want to delete this item in Class?",
+
+            data: nodeData[nodeIndex-1].properties,
+
+            onItemUpdated: function(args) {
+                console.log(args);
+            },
+
+            onItemDeleted: function(args) {
+                updateModel();
+            },
+
+            fields: [
+                { name: "name", type: "text", width: 50, editing: false },
+                { name: "type", type: "text", width: 50, editing: false },
+                { name: "definition", type: "text", width: 50 },
+                { name: "range", type: "text", width: 50 },
+                { name: "comment", type: "text", width: 50 },
+                { type: "control", editButton: true, modeSwitchButton: false, width: 50 }
+            ]
+        });
+
+        j('.menu .item').tab();
+        updateClassNameList();
+    }
 
 </script>
 </body>
