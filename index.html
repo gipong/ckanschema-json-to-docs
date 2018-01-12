@@ -235,7 +235,7 @@
             name: "Person",
             properties: [
                 { name: "name", type: "String", visibility: "public", definition: "def about name" },
-                { name: "birth", type: "Date", visibility: "protected" }
+                { name: "birth", type: "Date", visibility: "public" }
             ]
         }
     ];
@@ -370,6 +370,10 @@
             name: "newprps", type: "String", visibility: "public"
         });
         diagram.model = go.Model.fromJson(JSON.stringify(setProp));
+
+        j("#"+setProp.nodeDataArray[node.data.key-1].name).jsGrid("insertItem", {
+            name: "newprps", type: "String", visibility: "public"
+        });
     }
 
     function ne_removeClass(e, b) {
